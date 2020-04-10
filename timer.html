@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <h1 class="col-md-12 text-center mt-5 mb-5">Timer</h1>
+        <div class="col-md-12 text-center border-bottom pb-5">
+          <button class="btn btn-primary btn-lg" onclick="startTimer()" type="button" id="play">PLAY</button>
+          <button class="btn btn-primary btn-lg" onclick="stopTimer()" type="button" id="stop">STOP</button>
+        </div>
+
+        <audio id="myAudio">
+          <source src="popup.wav" type="audio/wav">
+        </audio>
+      </div>
+      <div class="row">
+        <h1 class="display-1 col-md-12 text-center">
+          <span id="move" style="display: none">Move</span>
+          <span id="hold" style="display: none">Hold</span>
+        </h1>
+        <h1 class="display-1 col-md-12 text-center" ></h1>
+        <h1 class="display-1 col-md-12 text-center">Did <span id="action">0</span></h1>
+        <h1 class="display-1 col-md-12 text-center" id="seconds"">0</h1>
+      </div>
+    </div>
+
+
+    <style>
+      body {
+        display:none;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script>
+      $( document ).ready(function() {
+        $('body').fadeIn()
+        $('#play').prop('disabled', false);
+        $('#stop').prop('disabled', true);
+      });
+
+      var timer
+      var counter
+      var totalAction = 0;
+      var totalSeconds = 0;
+      var x = document.getElementById("myAudio");
+
+      function setAction(){
+
+        // hode
+      }
+
+      function startTimer() {
+        setTimeout(()=>{
+          $('#play').prop('disabled', true);
+          $('#stop').prop('disabled', false);
+        });
+        x.play();
+
+
+        timer = setInterval(() => {
+
+          totalAction += 1
+          document.getElementById("action").innerHTML = totalAction;
+          totalSeconds = 0;
+        }, 6000);
+
+        counter = setInterval(() => {
+          totalSeconds += 1;
+          x.play();
+          document.getElementById("seconds").innerHTML = totalSeconds;
+        }, 1000);
+      }
+
+      function stopTimer() {
+        setTimeout(()=>{
+          $('#play').prop('disabled', false);
+          $('#stop').prop('disabled', true);
+        });
+
+        clearInterval(timer);
+        clearInterval(counter);
+      }
+
+    </script>
+  </body>
+</html>
