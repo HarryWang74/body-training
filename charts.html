@@ -4,15 +4,47 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://developers.google.com/chart/interactive/css/carousel_style.css">
+    <script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMultSeries);
+
+function drawMultSeries() {
+    var data = google.visualization.arrayToDataTable([
+      ['项目', '我', 'UFC 职业选手'],
+      ['背部肌群', 20, 100],
+      ['脊椎肌群', 23, 100],
+      ['肩部肌群', 20, 100],
+      ['核心肌群', 26, 100],
+      ['下肢肌群', 36, 100],
+      ['胸部 + 手臂肌群', 36, 100],
+    ]);
+
+    var options = {
+      chartArea: {width: '100%'},
+      fontSize: 12,
+      legend: {position: 'top', textStyle: {color: 'black', fontSize: 16}},
+      hAxis: {
+        minValue: 0
+      },
+      vAxis: {
+        title: 'City'
+      }
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+      }
+    </script>
   </head>
   <body>
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 pb-5">
-            charts here
+             <div id="chart_div" style="width: 900px; height: 500px;"></div>
         </div>
       </div>
     </div>
